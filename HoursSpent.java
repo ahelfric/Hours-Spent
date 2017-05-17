@@ -8,8 +8,7 @@ import javafx.scene.text.*;
 import javafx.event.*;
 import javafx.geometry.*;
 
-public class HoursSpent extends Application implements EventHandler<ActionEvent>{
-	//creating elements
+public class HoursSpent extends Application implements EventHandler<ActionEvent>{	
 	private final Text labelGames = new Text("Games");
 	private final Text labelDrawing = new Text("Drawing");
 	private final Text labelMaya = new Text("Maya");
@@ -28,7 +27,6 @@ public class HoursSpent extends Application implements EventHandler<ActionEvent>
 
 	@Override
 	public void start(Stage stage) {
-		
 		//creating panes
 		BorderPane border = new BorderPane();
 		Pane gamesPane = new Pane();
@@ -49,20 +47,26 @@ public class HoursSpent extends Application implements EventHandler<ActionEvent>
 		updateMaya.setOnAction(this);
 		
 		//editing games pane
-		timeGames.setLayoutY(80);
-		updateGames.setLayoutY(30);
+		labelGames.setLayoutY(5);
+		addGames.setLayoutY(15);
+		updateGames.setLayoutY(50);
+		timeGames.setLayoutY(97);
 		
 		//editing drawing pane
+		labelDrawing.setLayoutY(5);
 		labelDrawing.setLayoutX(50);
+		addDrawing.setLayoutY(15);
 		addDrawing.setLayoutX(50);
-		timeDrawing.setLayoutY(80);
-		timeDrawing.setLayoutX(50);
-		updateDrawing.setLayoutY(30);
+		updateDrawing.setLayoutY(50);
 		updateDrawing.setLayoutX(50);
+		timeDrawing.setLayoutY(97);
+		timeDrawing.setLayoutX(50);
 		
 		//editing maya pane
-		timeMaya.setLayoutY(80);
-		updateMaya.setLayoutY(30);
+		labelMaya.setLayoutY(5);
+		addMaya.setLayoutY(15);
+		updateMaya.setLayoutY(50);
+		timeMaya.setLayoutY(97);
 		
 		//organizing border pane
 		border.setPadding(new Insets(10, 20, 10, 20));
@@ -71,12 +75,17 @@ public class HoursSpent extends Application implements EventHandler<ActionEvent>
 		border.setRight(mayaPane);
 		
 		//setting scene and stage
-		Scene scene = new Scene(border, 600, 310);
+		Scene scene = new Scene(border, 580, 125);
 		stage.setTitle("Hours Spent");
 		stage.setScene(scene);
 		stage.setResizable(false);
 		stage.show();
-		//stage.setOnCloseRequest(new EventHandler<ActionEvent>()); I'm not sure why this is here...?
+		
+		//display the time when the program is first run
+		timeGames.setText(games.getTime()); 
+		timeDrawing.setText(drawing.getTime()); 
+		timeMaya.setText(maya.getTime()); 
+
 	}
 	
 	public void handle(ActionEvent event) {
@@ -85,6 +94,9 @@ public class HoursSpent extends Application implements EventHandler<ActionEvent>
 			//add time in the text field to the Category class
 			games.setTime(addGames.getText());
 			
+			//clear text field
+			addGames.clear();
+			
 			//get and display time
 			timeGames.setText(games.getTime()); 
 		}
@@ -92,6 +104,9 @@ public class HoursSpent extends Application implements EventHandler<ActionEvent>
 		if(updateDrawing == event.getSource()) {
 			//add time in the text field to the Category class
 			drawing.setTime(addDrawing.getText());
+			
+			//clear text field
+			addDrawing.clear();
 			
 			//get and display time
 			timeDrawing.setText(drawing.getTime()); 

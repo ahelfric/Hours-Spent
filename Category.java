@@ -29,7 +29,6 @@ public class Category {
 			} catch(IOException e) {
 				System.out.println(e);
 			}
-			
 		} else {
 			this.readFile();
 		}
@@ -61,6 +60,7 @@ public class Category {
 			int day = minutes / 60 / 24;
 			time = "" + day + ":" + hour + ":" + minute;
 			
+			//save the data to the file
 			this.writeFile();
 		}
 	}
@@ -71,16 +71,11 @@ public class Category {
 			BufferedReader in = new BufferedReader(new FileReader(name));
 			String line = in.readLine();
 			if (line != null) {
-				String[] interim = line.split("[.]"); //I wanted to use ".' to split the string,
-													  //but since ".' is a metacharacter, i needed
-													  //to express it as a literal character, thus
-													  //the [] around it. 
-				System.out.println(interim.length);
+				String[] interim = line.split("[.]"); 
 				time = interim[0];
 				minutes = Integer.parseInt(interim[1]);
 				in.close();
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
